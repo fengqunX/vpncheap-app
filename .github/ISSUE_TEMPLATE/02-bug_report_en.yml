@@ -14,8 +14,9 @@ body:
     id: platform
     attributes:
       label: Platform
-      description: Which platform are you seeing the bug on?
+      description: Which platform are you seeing the bug on? **Please pick manually — do not leave the placeholder selected.**
       options:
+        - "⚠️ Please select a platform (leaving this counts as an invalid submission and will be closed)"
         - iOS
         - macOS
         - Android
@@ -66,6 +67,7 @@ body:
         - Bundle ID is `com.novamindllc.vpncheap` → choose **Flutter**.
         - If you got it from the App Store, it is always the **Native** build.
       options:
+        - "⚠️ Please select an install source (leaving this counts as an invalid submission and will be closed)"
         - iOS — App Store (Native build)
         - iOS — TestFlight (Native build · com.vpncheap.iosnative)
         - iOS — TestFlight (Flutter build · com.novamindllc.vpncheap)

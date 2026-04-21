@@ -14,8 +14,9 @@ body:
     id: platform
     attributes:
       label: 平台
-      description: 你在哪个平台上遇到这个问题？
+      description: 你在哪个平台上遇到这个问题？**请手动选择，不要保留默认占位符。**
       options:
+        - "⚠️ 请选择平台（保留此项会被视为无效提交并关闭）"
         - iOS
         - macOS
         - Android
@@ -66,6 +67,7 @@ body:
         - Bundle ID 是 `com.novamindllc.vpncheap` → 选 **Flutter 版**。
         - App Store 下载的一律是 **原生版 Native**。
       options:
+        - "⚠️ 请选择安装来源（保留此项会被视为无效提交并关闭）"
         - iOS — App Store（原生版 Native）
         - iOS — TestFlight（原生版 Native · com.vpncheap.iosnative）
         - iOS — TestFlight（Flutter 版 · com.novamindllc.vpncheap）
