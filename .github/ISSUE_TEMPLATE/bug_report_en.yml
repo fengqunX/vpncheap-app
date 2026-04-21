@@ -1,0 +1,143 @@
+name: Bug report (English)
+description: Report a reproducible bug in the VPNCheap app.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please fill in every required field.**
+
+        The single most important thing you can do is attach a **screenshot or a short screen recording** that shows the problem. Written descriptions alone are very hard to act on.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform are you seeing the bug on?
+      options:
+        - iOS
+        - macOS
+        - Android
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: os_version
+    attributes:
+      label: OS version
+      description: Your operating system version.
+      placeholder: "e.g. iOS 17.4 / macOS 14.4 / Windows 11 23H2 / Android 14 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device / model
+      description: Device model (optional but helpful).
+      placeholder: "e.g. iPhone 15 Pro / Pixel 8 / MacBook Pro M2 / ThinkPad X1"
+    validations:
+      required: false
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App version
+      description: Found in Settings → About, or on the login screen.
+      placeholder: "e.g. 1.4.2 (build 142)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install_source
+    attributes:
+      label: Install source
+      description: Where did you install the app from?
+      options:
+        - App Store (iOS)
+        - TestFlight (iOS)
+        - GitHub Release — .apk (Android)
+        - GitHub Release — .exe (Windows)
+        - GitHub Release — .dmg (macOS)
+        - GitHub Release — .AppImage / .deb (Linux)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is the bug? What did you see?
+      placeholder: "The VPN fails to connect after I tap the connect button..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce (required)
+      description: |
+        **Required — list every step, one per line, in the order you performed them.** Start from opening the app. Do not write a summary like "login does not work"; write the exact taps and screens. If we cannot reproduce the bug by following your list, we cannot fix it.
+      placeholder: |
+        1. Open the app
+        2. Tap "Login" on the home screen
+        3. Enter my email and password, tap "Submit"
+        4. On the server list, select "Tokyo 01"
+        5. Tap the connect button
+        6. Wait ~30 seconds
+        7. See the error described above
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior
+      description: What did you expect to happen, and what actually happened?
+      placeholder: |
+        Expected: VPN connects and shows "Connected" status.
+        Actual: App shows "Connecting" for 30 seconds, then returns to "Disconnected".
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or screen recording (required)
+      description: |
+        **This is the most important field.** Drag-and-drop an image or short video showing the problem.
+        Capture tips — iOS: Control Center → Screen Recording; Android: pull-down quick settings → Screen Record; macOS: ⇧⌘5; Windows: Win+G; Linux: built-in screenshot tool.
+      placeholder: "Drag and drop screenshots or a screen recording here."
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (optional)
+      description: |
+        Only if you know how to get them. Paste any error messages or log output you saw. If you don't know how to collect logs, leave this blank — the screenshot/recording above is enough.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Integrity checklist
+      description: Please check every item.
+      options:
+        - label: "I searched existing issues and confirmed this is not a duplicate."
+          required: true
+        - label: "I am using the latest released version."
+          required: true
+        - label: "I attached at least one screenshot or screen recording that shows the problem."
+          required: true
+        - label: "I wrote out the reproduction steps one by one, in order, not just a summary."
+          required: true
+        - label: "My reproduction steps do not depend on private account credentials that only I have."
+          required: true
