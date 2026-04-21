@@ -1,0 +1,154 @@
+name: Bug report / 问题反馈
+description: Report a reproducible bug in the VPNCheap app. / 反馈一个可以重现的 VPNCheap 应用问题。
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please fill in every required field. / 请认真填写每一个必填项。**
+
+        The single most important thing you can do is attach a **screenshot or a short screen recording** that shows the problem. Written descriptions alone are very hard to act on.
+
+        最重要的事情：请附上一张**截图**或一段**短视频录屏**来展示问题。仅文字描述的反馈非常难以处理。
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform / 平台
+      description: Which platform are you seeing the bug on? / 你在哪个平台上遇到这个问题？
+      options:
+        - iOS
+        - macOS
+        - Android
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: os_version
+    attributes:
+      label: OS version / 系统版本
+      description: Your operating system version. / 你的操作系统版本。
+      placeholder: "e.g. iOS 17.4 / macOS 14.4 / Windows 11 23H2 / Android 14 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device / model — 设备型号
+      description: Device model (optional but helpful). / 设备型号（可选，但有助于排查）。
+      placeholder: "e.g. iPhone 15 Pro / Pixel 8 / MacBook Pro M2 / ThinkPad X1"
+    validations:
+      required: false
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App version / 应用版本
+      description: Found in Settings → About, or on the login screen. / 可在「设置 → 关于」或登录页底部查看。
+      placeholder: "e.g. 1.4.2 (build 142)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install_source
+    attributes:
+      label: Install source / 安装来源
+      description: Where did you install the app from? / 你是从哪里安装这个应用的？
+      options:
+        - App Store (iOS)
+        - TestFlight (iOS)
+        - Google Play (Android)
+        - GitHub Release — .apk (Android)
+        - GitHub Release — .exe (Windows)
+        - GitHub Release — .dmg (macOS)
+        - GitHub Release — .AppImage / .deb (Linux)
+        - Other / 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description / 问题描述
+      description: What is the bug? What did you see? / 具体遇到了什么问题？你看到了什么？
+      placeholder: "The VPN fails to connect after I tap the connect button..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce / 重现步骤 （必填 / required）
+      description: |
+        **Required — list every step, one per line, in the order you performed them.** Start from opening the app. Do not write a summary like "login does not work"; write the exact taps and screens. If we cannot reproduce the bug by following your list, we cannot fix it.
+
+        **必填 — 请按你实际操作的顺序，每一步一行，从打开应用开始依次列出。** 不要只写"登录失败"这种概述，要写出每一次点击和每一个页面。如果我们无法按你的步骤重现问题，就无法修复。
+      placeholder: |
+        1. Open the app
+        2. Tap "Login" on the home screen
+        3. Enter my email and password, tap "Submit"
+        4. On the server list, select "Tokyo 01"
+        5. Tap the connect button
+        6. Wait ~30 seconds
+        7. See the error described above
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior / 预期行为 vs 实际行为
+      description: What did you expect to happen, and what actually happened? / 你期望发生什么？实际发生了什么？
+      placeholder: |
+        Expected: VPN connects and shows "Connected" status.
+        Actual: App shows "Connecting" for 30 seconds, then returns to "Disconnected".
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or screen recording / 截图或录屏 （必填 / required）
+      description: |
+        **This is the most important field.** Drag-and-drop an image or short video showing the problem.
+        You can screenshot on any device, or record your screen (iOS: Control Center → Screen Recording; Android: pull-down quick settings → Screen Record; macOS: ⇧⌘5; Windows: Win+G; Linux: built-in screenshot tool).
+
+        **这是最重要的一项。** 请拖拽一张图片或一段短视频到下方框中来展示问题。
+        各平台录屏方式：iOS 控制中心 → 屏幕录制；Android 下拉快捷栏 → 屏幕录制；macOS 快捷键 ⇧⌘5；Windows 快捷键 Win+G；Linux 使用系统自带截图工具。
+      placeholder: "Drag and drop screenshots or a screen recording here. / 请把截图或录屏文件拖到这里。"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / 日志 (optional / 可选)
+      description: |
+        Only if you know how to get them. Paste any error messages or log output you saw.
+        If you don't know how to collect logs, leave this blank — the screenshot/recording above is enough.
+
+        如果你知道如何获取日志，可以在这里粘贴错误信息。如果不清楚如何收集日志，留空即可，上方的截图或录屏已经足够。
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Integrity checklist / 完整性声明
+      description: Please check every item. / 请勾选下面每一项。
+      options:
+        - label: "I searched existing issues and confirmed this is not a duplicate. / 我已搜索并确认此问题不是重复提交。"
+          required: true
+        - label: "I am using the latest released version. / 我正在使用最新发布的版本。"
+          required: true
+        - label: "I attached at least one screenshot or screen recording that shows the problem. / 我已附上至少一张截图或一段录屏来展示这个问题。"
+          required: true
+        - label: "I wrote out the reproduction steps one by one, in order, not just a summary. / 我按顺序逐条写出了重现步骤，而不是只写一句概述。"
+          required: true
+        - label: "My reproduction steps do not depend on private account credentials that only I have. / 我的重现步骤不依赖只有我才有的私密账号凭据。"
+          required: true
