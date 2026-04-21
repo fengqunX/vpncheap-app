@@ -55,14 +55,24 @@ body:
     id: install_source
     attributes:
       label: 安装来源
-      description: 你是从哪里安装这个应用的？
+      description: |
+        你是从哪里安装这个应用的？
+
+        **iOS 用户必读：** 我们在 iOS 上同时发布了两个版本 —— **原生版（Native）** 和 **Flutter 版**。两者都可以通过 TestFlight 安装，但 App Store 上架的只有原生版。**请准确选择**，否则我们很难定位你的问题。
+
+        如何区分（仅 TestFlight 需要区分）：
+        - 打开 **TestFlight** 应用 → 点击你的 VPNCheap → 滚到底部查看「Bundle ID」。
+        - Bundle ID 是 `com.vpncheap.iosnative` → 选 **原生版 Native**。
+        - Bundle ID 是 `com.novamindllc.vpncheap` → 选 **Flutter 版**。
+        - App Store 下载的一律是 **原生版 Native**。
       options:
-        - App Store（iOS）
-        - TestFlight（iOS）
-        - GitHub Release — .apk（Android）
-        - GitHub Release — .exe（Windows）
-        - GitHub Release — .dmg（macOS）
-        - GitHub Release — .AppImage / .deb（Linux）
+        - iOS — App Store（原生版 Native）
+        - iOS — TestFlight（原生版 Native · com.vpncheap.iosnative）
+        - iOS — TestFlight（Flutter 版 · com.novamindllc.vpncheap）
+        - Android — GitHub Release .apk
+        - macOS — GitHub Release .dmg
+        - Windows — GitHub Release .exe
+        - Linux — GitHub Release .AppImage / .deb
         - 其他
     validations:
       required: true

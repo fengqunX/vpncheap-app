@@ -55,14 +55,24 @@ body:
     id: install_source
     attributes:
       label: Install source
-      description: Where did you install the app from?
+      description: |
+        Where did you install the app from?
+
+        **iOS users — please read:** we ship two different iOS builds — a **Native** one and a **Flutter** one. Both can be installed via TestFlight, but only the Native build is on the App Store. **Please pick the correct one** — we cannot triage your issue otherwise.
+
+        How to tell (only TestFlight users need to check):
+        - Open the **TestFlight** app → tap your VPNCheap → scroll down and look at "Bundle ID".
+        - Bundle ID is `com.vpncheap.iosnative` → choose **Native**.
+        - Bundle ID is `com.novamindllc.vpncheap` → choose **Flutter**.
+        - If you got it from the App Store, it is always the **Native** build.
       options:
-        - App Store (iOS)
-        - TestFlight (iOS)
-        - GitHub Release — .apk (Android)
-        - GitHub Release — .exe (Windows)
-        - GitHub Release — .dmg (macOS)
-        - GitHub Release — .AppImage / .deb (Linux)
+        - iOS — App Store (Native build)
+        - iOS — TestFlight (Native build · com.vpncheap.iosnative)
+        - iOS — TestFlight (Flutter build · com.novamindllc.vpncheap)
+        - Android — GitHub Release .apk
+        - macOS — GitHub Release .dmg
+        - Windows — GitHub Release .exe
+        - Linux — GitHub Release .AppImage / .deb
         - Other
     validations:
       required: true
