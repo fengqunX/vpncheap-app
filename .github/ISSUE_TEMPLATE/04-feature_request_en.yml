@@ -1,0 +1,106 @@
+name: Feature request (English)
+description: Request a specific, actionable VPNCheap release/download feature.
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Describe the concrete release, download, install, or update scenario you want solved. Vague requests will be closed.**
+
+        Do not only write "configure that server", "add disaster recovery", or "add that feature". Tell us the release channel, request type, current problem, and the exact behavior you want changed or added. Screenshots, recordings, or examples make the request much easier to evaluate.
+
+  - type: dropdown
+    id: release_area
+    attributes:
+      label: Release channel / package
+      description: Which release channel does this mainly affect? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a release channel (leaving this counts as an invalid submission and will be closed)"
+        - iOS — App Store (Native build)
+        - iOS — TestFlight (Native build)
+        - iOS — TestFlight (Flutter build)
+        - Android — GitHub Release .apk
+        - macOS — GitHub Release .dmg
+        - Windows — GitHub Release .exe
+        - Linux — GitHub Release .AppImage / .deb
+        - Release page / download instructions
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Request type
+      description: What kind of change are you asking for? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a request type (leaving this counts as an invalid submission and will be closed)"
+        - Add a package or release channel
+        - Improve download or install instructions
+        - Improve the update flow
+        - Improve release notes / changelog
+        - Add compatibility support
+        - Improve release availability / failover
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current problem or user scenario
+      description: What is missing, confusing, inconvenient, or unreliable about downloading, installing, updating, or understanding releases today?
+      placeholder: |
+        Example: On the Release page, Windows users cannot tell which installer to download, and the notes do not say whether the startup bug was fixed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested_behavior
+    attributes:
+      label: What should change?
+      description: Describe the exact behavior you want, not just a broad idea.
+      placeholder: |
+        Example: Group release assets by platform and show system requirements, checksums, and the main fixes for each release.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      description: How does this affect users? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select an impact level (leaving this counts as an invalid submission and will be closed)"
+        - Convenience improvement
+        - Affects download or install for some users
+        - Affects many users on one platform
+        - Affects paid users getting a usable version
+        - Affects release availability or failover
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots, recordings, examples, or extra context (optional)
+      description: If this involves the Release page, download links, install prompts, or update flow, please attach screenshots or a short recording.
+      placeholder: "Add screenshots, recordings, download links, version numbers, related issues, or other context here."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Submission checklist
+      description: Please check every item.
+      options:
+        - label: "I searched existing issues and confirmed this is not a duplicate."
+          required: true
+        - label: "I selected a specific release channel and request type."
+          required: true
+        - label: "I explained the current problem or user scenario and the specific behavior I want changed or added."
+          required: true
+        - label: "I understand that vague requests like 'configure that server', 'add disaster recovery', or 'add it' will be closed."
+          required: true

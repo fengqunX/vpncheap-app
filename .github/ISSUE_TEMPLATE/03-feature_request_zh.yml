@@ -1,0 +1,106 @@
+name: 功能请求（中文）
+description: 提交一个具体、可评估的 VPNCheap 发布/下载功能请求。
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **请写清楚你要解决的具体发布、下载、安装或更新场景。过于模糊的请求会被关闭。**
+
+        不要只写「配置那个机器」「配置防灾」「加一下那个功能」。请说明发布渠道、请求类型、当前问题、希望新增或改变的行为。能提供截图、录屏或示例会更容易处理。
+
+  - type: dropdown
+    id: release_area
+    attributes:
+      label: 发布渠道 / 安装包
+      description: 这个请求主要影响哪个发布渠道？**请手动选择，不要保留默认占位符。**
+      options:
+        - "⚠️ 请选择发布渠道（保留此项会被视为无效提交并关闭）"
+        - iOS — App Store（原生版 Native）
+        - iOS — TestFlight（原生版 Native）
+        - iOS — TestFlight（Flutter 版）
+        - Android — GitHub Release .apk
+        - macOS — GitHub Release .dmg
+        - Windows — GitHub Release .exe
+        - Linux — GitHub Release .AppImage / .deb
+        - Release 页面 / 下载说明
+        - 其他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: 请求类型
+      description: 你希望我们做哪类改变？**请手动选择，不要保留默认占位符。**
+      options:
+        - "⚠️ 请选择请求类型（保留此项会被视为无效提交并关闭）"
+        - 新增安装包或发布渠道
+        - 改进下载或安装说明
+        - 改进更新流程
+        - 改进版本说明 / changelog
+        - 增加兼容性支持
+        - 提升发布可用性 / 故障恢复
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 当前问题或使用场景
+      description: 现在下载、安装、更新或理解版本说明时哪里不方便、缺失或容易误解？
+      placeholder: |
+        例如：Windows 用户在 Release 页面无法判断应该下载哪个安装包，也看不到该版本是否修复了自动启动问题。
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested_behavior
+    attributes:
+      label: 你希望新增或改变什么？
+      description: 请写成具体行为，而不是只写一个概念。
+      placeholder: |
+        例如：希望每个 Release 按平台分组列出安装包，并标注系统要求、校验值和主要修复内容。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: 影响程度
+      description: 这个功能对用户有什么影响？**请手动选择，不要保留默认占位符。**
+      options:
+        - "⚠️ 请选择影响程度（保留此项会被视为无效提交并关闭）"
+        - 只是使用更方便
+        - 影响部分用户下载或安装
+        - 影响某个平台的大量用户
+        - 影响付费用户获取可用版本
+        - 影响发布可用性或故障恢复
+        - 不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 截图、录屏、示例或补充信息（可选）
+      description: 如果请求和 Release 页面、下载链接、安装提示或更新流程有关，请尽量拖入截图或录屏。
+      placeholder: "可以放截图、录屏、下载链接、版本号、相关 issue 链接等。"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: 提交确认
+      description: 请勾选每一项。
+      options:
+        - label: "我已搜索现有 issues，确认这不是重复请求。"
+          required: true
+        - label: "我已选择具体发布渠道和请求类型。"
+          required: true
+        - label: "我已说明当前问题或使用场景，以及希望新增或改变的具体行为。"
+          required: true
+        - label: "我理解只写「配置那个机器」「配置防灾」「加一下」这类模糊描述会被关闭。"
+          required: true
