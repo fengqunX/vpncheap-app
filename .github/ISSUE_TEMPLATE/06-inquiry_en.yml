@@ -1,0 +1,91 @@
+name: Inquiry (English)
+description: Ask how VPNCheap release, download, install, or update flows work, or why something is not possible.
+title: "[Inquiry] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Use this form for questions and clarifications, not bug reports or feature requests.**
+
+        Example: asking why users cannot manually send logs after a crash, or why a platform package is released a certain way, is an inquiry. Please include the release channel, scenario, and what you already checked. Repeated questions without context may be closed or redirected to an existing issue.
+
+  - type: dropdown
+    id: release_area
+    attributes:
+      label: Release channel / package
+      description: Which release channel is this mainly about? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select a release channel (leaving this counts as an invalid submission and will be closed)"
+        - iOS — App Store (Native build)
+        - iOS — TestFlight (Native build)
+        - iOS — TestFlight (Flutter build)
+        - Android — GitHub Release .apk
+        - macOS — GitHub Release .dmg
+        - Windows — GitHub Release .exe
+        - Linux — GitHub Release .AppImage / .deb
+        - Release page / download instructions
+        - Not release-channel specific
+    validations:
+      required: true
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Inquiry topic
+      description: What do you want clarified? **Please pick manually — do not leave the placeholder selected.**
+      options:
+        - "⚠️ Please select an inquiry topic (leaving this counts as an invalid submission and will be closed)"
+        - Logs / crashes / diagnostics
+        - Download / install / update flow
+        - Release notes / changelog
+        - App Store / TestFlight release
+        - GitHub Release assets
+        - System compatibility / platform support
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What do you want clarified?
+      description: Ask the specific question. Do not only write "why not add this".
+      placeholder: |
+        Example: Why can't the app let users tap a button to upload local logs after the app crashes?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and what you already checked
+      description: Explain which page or action raised the question, and what docs or issues you already checked.
+      placeholder: |
+        Example: I saw crash diagnostics mentioned in the release notes, but I am not sure why users cannot upload logs after the app has already quit.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots, links, or extra context (optional)
+      description: If this is about the Release page, download links, install prompts, update flow, or an existing issue, add links or screenshots.
+      placeholder: "Add screenshots, recordings, download links, version numbers, related issues, or docs links here."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Submission checklist
+      description: Please check every item.
+      options:
+        - label: "I searched existing issues and did not find the same explanation."
+          required: true
+        - label: "I understand that if the app process has already crashed, the app itself cannot keep running code to upload logs."
+          required: true
+        - label: "I included the release channel, inquiry topic, specific question, and context."
+          required: true
+        - label: "I confirm this is not a bug report or feature request; if it is, I will use the matching form."
+          required: true
