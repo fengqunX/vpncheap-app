@@ -1,0 +1,14 @@
+name: Issue hub
+
+on:
+  issues:
+    types: [opened, reopened, transferred, closed, labeled, unlabeled, assigned, unassigned]
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    uses: fengqunX/vpncheap-app/.github/workflows/issue-hub-sync-reusable.yml@9da599f4dfa08eac364c68ae80840ddc3c997f49
+    secrets:
+      project_token: ${{ secrets.VPNCHEAP_PROJECT_TOKEN }}
