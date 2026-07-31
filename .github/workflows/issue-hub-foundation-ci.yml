@@ -1,0 +1,33 @@
+name: Issue hub foundation CI
+
+on:
+  pull_request:
+    paths:
+      - ".github/actions/issue-hub-sync/**"
+      - ".github/workflows/issue-hub-*.yml"
+      - "governance/issue-hub.json"
+      - "scripts/issue-hub/**"
+      - "tests/issue-hub/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/actions/issue-hub-sync/**"
+      - ".github/workflows/issue-hub-*.yml"
+      - "governance/issue-hub.json"
+      - "scripts/issue-hub/**"
+      - "tests/issue-hub/**"
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Validate config and run deterministic tests
+        run: node --test tests/issue-hub/*.test.js
