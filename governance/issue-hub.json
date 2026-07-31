@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "owner": "fengqunX",
+    "title": "VPNCheap 产品问题中心",
+    "shortDescription": "VPNCheap cross-repository issue governance. Original repository issues remain the sole source of truth.",
+    "readme": "Issues remain in their original repositories. This Project is a deterministic cross-repository planning view: no copied issues, no cron, and no LLM correctness path.",
+    "removeAutoDefaultView": true,
+    "removeEnabledDefaultWorkflows": ["Auto-add sub-issues to project", "Auto-close issue", "Item closed", "Pull request merged"],
+    "fields": [
+      {
+        "name": "Status",
+        "dataType": "SINGLE_SELECT",
+        "options": [
+          { "name": "Inbox", "color": "GRAY", "description": "New or reopened issue awaiting taxonomy and triage" },
+          { "name": "Needs info", "color": "YELLOW", "description": "Taxonomy conflict or missing information requires attention" },
+          { "name": "Triaged", "color": "BLUE", "description": "Ownership and problem statement confirmed" },
+          { "name": "Planned", "color": "PURPLE", "description": "Accepted into an implementation plan" },
+          { "name": "In progress", "color": "ORANGE", "description": "Implementation is active" },
+          { "name": "Verify", "color": "PINK", "description": "Awaiting device, production, or release verification" },
+          { "name": "Done", "color": "GREEN", "description": "Original repository issue is closed" }
+        ]
+      },
+      {
+        "name": "Priority",
+        "dataType": "SINGLE_SELECT",
+        "options": [
+          { "name": "P0", "color": "RED", "description": "Stop-ship, security, or severe customer impact" },
+          { "name": "P1", "color": "ORANGE", "description": "High impact; plan next" },
+          { "name": "P2", "color": "YELLOW", "description": "Normal priority" },
+          { "name": "P3", "color": "GRAY", "description": "Low priority or opportunistic" }
+        ]
+      },
+      { "name": "Customer reports count", "dataType": "NUMBER" },
+      { "name": "Last report date", "dataType": "DATE" }
+    ],
+    "views": [
+      { "name": "CEO 看板", "layout": "BOARD_LAYOUT", "filter": "", "visibleFields": ["Title", "Repository", "Assignees", "Labels", "Status", "Priority", "Customer reports count", "Last report date"] },
+      { "name": "Native 矩阵", "layout": "TABLE_LAYOUT", "filter": "label:\"runtime:native\"", "visibleFields": ["Title", "Repository", "Assignees", "Labels", "Status", "Priority", "Customer reports count", "Last report date"] },
+      { "name": "Hot issues", "layout": "TABLE_LAYOUT", "filter": "priority:P0,P1 -status:Done", "visibleFields": ["Title", "Repository", "Assignees", "Labels", "Status", "Priority", "Customer reports count", "Last report date"] },
+      { "name": "待补充", "layout": "TABLE_LAYOUT", "filter": "status:\"Needs info\"", "visibleFields": ["Title", "Repository", "Assignees", "Labels", "Status", "Priority", "Customer reports count", "Last report date"] },
+      { "name": "Release blockers", "layout": "TABLE_LAYOUT", "filter": "label:\"type:release\" priority:P0,P1 -status:Done", "visibleFields": ["Title", "Repository", "Assignees", "Labels", "Status", "Priority", "Customer reports count", "Last report date"] }
+    ]
+  },
+  "taxonomy": {
+    "conflictLabel": {
+      "name": "taxonomy-conflict",
+      "color": "FBCA04",
+      "description": "Deterministic taxonomy conflict; resolve labels before planning"
+    },
+    "categories": [
+      {
+        "name": "Platform",
+        "cardinality": "many",
+        "labels": ["platform:android", "platform:ios", "platform:macos", "platform:tvos", "platform:windows", "platform:web", "platform:backend"]
+      },
+      {
+        "name": "Runtime",
+        "cardinality": "one",
+        "labels": ["runtime:native", "runtime:flutter", "runtime:web", "runtime:service"]
+      },
+      {
+        "name": "Surface",
+        "cardinality": "many",
+        "labels": ["surface:phone", "surface:tablet", "surface:desktop", "surface:tv", "surface:web", "surface:backend"]
+      },
+      {
+        "name": "Type",
+        "cardinality": "one",
+        "labels": ["type:auth", "type:account-billing", "type:node-data", "type:connection", "type:release", "type:ui", "type:server", "type:support-noise", "type:security"]
+      }
+    ],
+    "labelStyle": {
+      "Platform": { "color": "B60205", "description": "Affected platform" },
+      "Runtime": { "color": "5319E7", "description": "Implementation runtime" },
+      "Surface": { "color": "1D76DB", "description": "Affected product surface" },
+      "Type": { "color": "0E8A16", "description": "Problem domain" }
+    },
+    "repositories": {
+      "vpncheap": { "defaults": ["platform:android", "platform:ios", "platform:macos", "platform:windows", "runtime:flutter", "surface:phone", "surface:tablet", "surface:desktop"] },
+      "vpncheap-android": { "defaults": ["platform:android", "runtime:native", "surface:phone", "surface:tablet"] },
+      "vpncheap-android-tv": { "defaults": ["platform:android", "runtime:native", "surface:tv"] },
+      "vpncheap-app": { "defaults": ["runtime:service", "surface:web"] },
+      "vpncheap-apple-native": { "defaults": ["platform:ios", "platform:macos", "runtime:native", "surface:phone", "surface:tablet", "surface:desktop"] },
+      "vpncheap-apple-tv": { "defaults": ["platform:tvos", "runtime:native", "surface:tv"] },
+      "vpncheap-download": { "defaults": ["platform:web", "runtime:web", "surface:web"] },
+      "vpncheap-ios": { "defaults": ["platform:ios", "runtime:native", "surface:phone", "surface:tablet"] },
+      "vpncheap-macos": { "defaults": ["platform:macos", "runtime:native", "surface:desktop"] },
+      "vpncheap-maintained": { "defaults": ["platform:android", "platform:ios", "platform:macos", "platform:windows", "runtime:flutter", "surface:phone", "surface:tablet", "surface:desktop"] },
+      "vpncheap-web": { "defaults": ["platform:web", "runtime:web", "surface:web"] },
+      "vpncheap-windows": { "defaults": ["platform:windows", "runtime:native", "surface:desktop"] }
+    }
+  }
+}

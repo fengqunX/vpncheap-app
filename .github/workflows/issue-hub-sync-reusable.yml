@@ -1,0 +1,42 @@
+name: Issue hub sync (reusable)
+
+on:
+  workflow_call:
+    secrets:
+      project_token:
+        description: Classic fengqunX team PAT with repo and project scopes.
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: issue-hub-${{ github.repository }}-${{ github.event.issue.node_id || github.run_id }}
+      queue: max
+      cancel-in-progress: false
+    steps:
+      - name: Require canonical reusable workflow repository
+        env:
+          WORKFLOW_REPOSITORY: ${{ job.workflow_repository }}
+        run: |
+          if [[ "$WORKFLOW_REPOSITORY" != "fengqunX/vpncheap-app" ]]; then
+            echo "unexpected reusable workflow repository: $WORKFLOW_REPOSITORY" >&2
+            exit 1
+          fi
+
+      - name: Check out audited issue hub foundation
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
+          path: .issue-hub-foundation
+          persist-credentials: false
+
+      - name: Sync live issue
+        uses: ./.issue-hub-foundation/.github/actions/issue-hub-sync
+        with:
+          token: ${{ secrets.project_token }}

@@ -1,0 +1,7 @@
+paths:
+  .github/workflows/issue-hub-sync-reusable.yml:
+    ignore:
+      # GitHub.com supports these workflow identity contexts and queue:max;
+      # actionlint v1.7.10 has not yet added them to its embedded schema.
+      - 'unexpected key "queue" for "concurrency" section'
+      - 'property "workflow_(repository|sha)" is not defined in object type'

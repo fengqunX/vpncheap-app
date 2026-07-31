@@ -1,0 +1,14 @@
+name: VPNCheap issue hub sync
+description: Deterministically reconcile one live repository issue into the central Projects V2 board.
+inputs:
+  token:
+    description: Classic team PAT with repo and project scopes.
+    required: true
+outputs:
+  status:
+    description: Status applied by deterministic precedence, or blank when unchanged.
+  project-item-id:
+    description: Projects V2 item node ID.
+runs:
+  using: node24
+  main: index.js
