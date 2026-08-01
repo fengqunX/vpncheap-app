@@ -1,7 +1,7 @@
 name: Bug report (English)
 description: Report a reproducible bug in the VPNCheap app.
-title: "[Bug] "
-labels: ["bug"]
+title: "【待确认平台｜发布】"
+labels: ["bug", "type:release"]
 body:
   - type: markdown
     attributes:
@@ -16,7 +16,7 @@ body:
       label: Platform
       description: Which platform are you seeing the bug on? **Please pick manually — do not leave the placeholder selected.**
       options:
-        - "⚠️ Please select a platform (leaving this counts as an invalid submission and will be closed)"
+        - "⚠️ Please select a platform (otherwise human triage marks the open issue Needs info)"
         - iOS
         - macOS
         - Android
@@ -67,7 +67,7 @@ body:
         - Bundle ID is `com.novamindllc.vpncheap` → choose **Flutter**.
         - If you got it from the App Store, it is always the **Native** build.
       options:
-        - "⚠️ Please select an install source (leaving this counts as an invalid submission and will be closed)"
+        - "⚠️ Please select an install source (otherwise human triage marks the open issue Needs info)"
         - iOS — App Store (Native build)
         - iOS — TestFlight (Native build · com.vpncheap.iosnative)
         - iOS — TestFlight (Flutter build · com.novamindllc.vpncheap)
@@ -123,6 +123,7 @@ body:
       description: |
         **This is the most important field.** Drag-and-drop an image or short video showing the problem.
         Capture tips — iOS: Control Center → Screen Recording; Android: pull-down quick settings → Screen Record; macOS: ⇧⌘5; Windows: Win+G; Linux: built-in screenshot tool.
+        Before uploading, redact accounts, orders, passwords, keys, tokens, cookies, certificates, private keys, server addresses, IPs, ports, and protocol names.
       placeholder: "Drag and drop screenshots or a screen recording here."
     validations:
       required: true
@@ -133,6 +134,7 @@ body:
       label: Logs (optional)
       description: |
         Only if you know how to get them. Paste any error messages or log output you saw. If you don't know how to collect logs, leave this blank — the screenshot/recording above is enough.
+        Paste only the smallest necessary excerpt. Remove credentials, customer data, server addresses, IPs, ports, protocol names, and other sensitive content.
       render: shell
     validations:
       required: false
@@ -152,4 +154,6 @@ body:
         - label: "I wrote out the reproduction steps one by one, in order, not just a summary."
           required: true
         - label: "My reproduction steps do not depend on private account credentials that only I have."
+          required: true
+        - label: "I removed credentials, customer data, server addresses, IPs, ports, and protocol names from the title, all body fields, screenshots, recordings, and logs."
           required: true

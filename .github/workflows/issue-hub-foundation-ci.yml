@@ -3,17 +3,25 @@ name: Issue hub foundation CI
 on:
   pull_request:
     paths:
+      - "README.md"
+      - ".github/ISSUE_TEMPLATE/**"
       - ".github/actions/issue-hub-sync/**"
       - ".github/workflows/issue-hub-*.yml"
       - "governance/issue-hub.json"
+      - "docs/issue-hub-foundation.md"
+      - "docs/vpncheap-issue-language-and-triage-convention.md"
       - "scripts/issue-hub/**"
       - "tests/issue-hub/**"
   push:
     branches: [main]
     paths:
+      - "README.md"
+      - ".github/ISSUE_TEMPLATE/**"
       - ".github/actions/issue-hub-sync/**"
       - ".github/workflows/issue-hub-*.yml"
       - "governance/issue-hub.json"
+      - "docs/issue-hub-foundation.md"
+      - "docs/vpncheap-issue-language-and-triage-convention.md"
       - "scripts/issue-hub/**"
       - "tests/issue-hub/**"
 
@@ -30,4 +38,6 @@ jobs:
           persist-credentials: false
 
       - name: Validate config and run deterministic tests
-        run: node --test tests/issue-hub/*.test.js
+        run: |
+          ruby -e 'require "yaml"; Dir[".github/ISSUE_TEMPLATE/*.{yml,yaml}"].each { |file| YAML.load_file(file) }'
+          node --test tests/issue-hub/*.test.js

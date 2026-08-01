@@ -1,7 +1,7 @@
 name: 问题反馈（中文）
 description: 反馈一个可以重现的 VPNCheap 应用问题。
-title: "[Bug] "
-labels: ["bug"]
+title: "【待确认平台｜发布】"
+labels: ["bug", "type:release"]
 body:
   - type: markdown
     attributes:
@@ -16,7 +16,7 @@ body:
       label: 平台
       description: 你在哪个平台上遇到这个问题？**请手动选择，不要保留默认占位符。**
       options:
-        - "⚠️ 请选择平台（保留此项会被视为无效提交并关闭）"
+        - "⚠️ 请选择平台（保留此项时，人工审核会标记为 Needs info）"
         - iOS
         - macOS
         - Android
@@ -67,7 +67,7 @@ body:
         - Bundle ID 是 `com.novamindllc.vpncheap` → 选 **Flutter 版**。
         - App Store 下载的一律是 **原生版 Native**。
       options:
-        - "⚠️ 请选择安装来源（保留此项会被视为无效提交并关闭）"
+        - "⚠️ 请选择安装来源（保留此项时，人工审核会标记为 Needs info）"
         - iOS — App Store（原生版 Native）
         - iOS — TestFlight（原生版 Native · com.vpncheap.iosnative）
         - iOS — TestFlight（Flutter 版 · com.novamindllc.vpncheap）
@@ -123,6 +123,7 @@ body:
       description: |
         **这是最重要的一项。** 请拖拽一张图片或一段短视频到下方框中来展示问题。
         各平台录屏方式：iOS 控制中心 → 屏幕录制；Android 下拉快捷栏 → 屏幕录制；macOS 快捷键 ⇧⌘5；Windows 快捷键 Win+G；Linux 使用系统自带截图工具。
+        上传前请遮盖账号、订单、密码、密钥、令牌、Cookie、证书、私钥、服务器地址、IP、端口和协议名称。
       placeholder: "请把截图或录屏文件拖到这里。"
     validations:
       required: true
@@ -133,6 +134,7 @@ body:
       label: 日志（可选）
       description: |
         如果你知道如何获取日志，可以在这里粘贴错误信息。如果不清楚如何收集日志，留空即可，上方的截图或录屏已经足够。
+        只粘贴最小必要片段。必须删除凭据、客户隐私、服务器地址、IP、端口、协议名称和其他敏感内容。
       render: shell
     validations:
       required: false
@@ -152,4 +154,6 @@ body:
         - label: "我按顺序逐条写出了重现步骤，而不是只写一句概述。"
           required: true
         - label: "我的重现步骤不依赖只有我才有的私密账号凭据。"
+          required: true
+        - label: "我已从标题、全部正文、截图、录屏和日志中删除凭据、客户隐私、服务器地址、IP、端口和协议名称。"
           required: true
