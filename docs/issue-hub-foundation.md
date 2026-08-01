@@ -5,6 +5,11 @@ governed repositories. The original repository issue is always the sole source o
 truth: discussions, assignees, labels, linked code, and open/closed state are not
 copied into a second issue.
 
+Issue 标题、正文、分诊证据、关闭评论和隐私边界统一遵循
+[`VPNCheap Issue 中文与分诊规范`](vpncheap-issue-language-and-triage-convention.md)。
+Project README 保留该稳定入口，便于从 CEO 看板直接回到规范；原仓库 Issue
+仍是唯一事实源。
+
 ## Deterministic contract
 
 - Events only: `opened`, `reopened`, `transferred`, `closed`, `labeled`,
@@ -23,6 +28,10 @@ copied into a second issue.
 - Unknown taxonomy values remain blank. `Runtime` and `Type` allow one known
   value; `Platform` and `Surface` may contain multiple known values. Actual
   cardinality conflicts add `taxonomy-conflict`.
+- Linux is a governed platform label. Multi-platform intake repositories never
+  default platform or surface; they keep only a defensible runtime default when
+  the repository has one. This avoids labeling an unknown report as every
+  supported platform.
 - `Priority`, `Customer reports count`, and `Last report date` remain blank
   until a human supplies verified planning/customer evidence.
 - `Repository`, `Assignees`, and `Labels` are GitHub built-ins. Status and

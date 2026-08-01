@@ -3,8 +3,8 @@
   "project": {
     "owner": "fengqunX",
     "title": "VPNCheap 产品问题中心",
-    "shortDescription": "VPNCheap cross-repository issue governance. Original repository issues remain the sole source of truth.",
-    "readme": "Issues remain in their original repositories. This Project is a deterministic cross-repository planning view: no copied issues, no cron, and no LLM correctness path.",
+    "shortDescription": "VPNCheap 跨仓 Issue 治理。原仓库 Issue 是唯一事实源。",
+    "readme": "原仓库 Issue 是唯一事实源；Project 仅做跨仓规划视图，不复制 Issue。中文标题、正文、分诊、关闭证据与隐私规范：https://github.com/fengqunX/vpncheap-app/blob/main/docs/vpncheap-issue-language-and-triage-convention.md 。无定时任务、自动翻译或 LLM 正确性路径。",
     "removeAutoDefaultView": true,
     "removeEnabledDefaultWorkflows": ["Auto-add sub-issues to project", "Auto-close issue", "Item closed", "Pull request merged"],
     "fields": [
@@ -52,7 +52,7 @@
       {
         "name": "Platform",
         "cardinality": "many",
-        "labels": ["platform:android", "platform:ios", "platform:macos", "platform:tvos", "platform:windows", "platform:web", "platform:backend"]
+        "labels": ["platform:android", "platform:ios", "platform:linux", "platform:macos", "platform:tvos", "platform:windows", "platform:web", "platform:backend"]
       },
       {
         "name": "Runtime",
@@ -77,16 +77,16 @@
       "Type": { "color": "0E8A16", "description": "Problem domain" }
     },
     "repositories": {
-      "vpncheap": { "defaults": ["platform:android", "platform:ios", "platform:macos", "platform:windows", "runtime:flutter", "surface:phone", "surface:tablet", "surface:desktop"] },
+      "vpncheap": { "defaults": ["runtime:flutter"] },
       "vpncheap-android": { "defaults": ["platform:android", "runtime:native", "surface:phone", "surface:tablet"] },
       "vpncheap-android-tv": { "defaults": ["platform:android", "runtime:native", "surface:tv"] },
-      "vpncheap-app": { "defaults": ["runtime:service", "surface:web"] },
-      "vpncheap-apple-native": { "defaults": ["platform:ios", "platform:macos", "runtime:native", "surface:phone", "surface:tablet", "surface:desktop"] },
+      "vpncheap-app": { "defaults": [] },
+      "vpncheap-apple-native": { "defaults": ["runtime:native"] },
       "vpncheap-apple-tv": { "defaults": ["platform:tvos", "runtime:native", "surface:tv"] },
       "vpncheap-download": { "defaults": ["platform:web", "runtime:web", "surface:web"] },
       "vpncheap-ios": { "defaults": ["platform:ios", "runtime:native", "surface:phone", "surface:tablet"] },
       "vpncheap-macos": { "defaults": ["platform:macos", "runtime:native", "surface:desktop"] },
-      "vpncheap-maintained": { "defaults": ["platform:android", "platform:ios", "platform:macos", "platform:windows", "runtime:flutter", "surface:phone", "surface:tablet", "surface:desktop"] },
+      "vpncheap-maintained": { "defaults": ["runtime:flutter"] },
       "vpncheap-web": { "defaults": ["platform:web", "runtime:web", "surface:web"] },
       "vpncheap-windows": { "defaults": ["platform:windows", "runtime:native", "surface:desktop"] }
     }

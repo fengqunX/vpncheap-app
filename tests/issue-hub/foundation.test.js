@@ -23,6 +23,42 @@ test("foundation contains the frozen fields and saved views", () => {
   ]);
 });
 
+test("Project metadata exposes the Chinese triage convention and sole-source rule", () => {
+  const conventionUrl = "https://github.com/fengqunX/vpncheap-app/blob/main/docs/vpncheap-issue-language-and-triage-convention.md";
+  assert.match(config.project.shortDescription, /原仓库 Issue 是唯一事实源/);
+  assert(config.project.readme.includes(conventionUrl));
+  assert(fs.existsSync(path.resolve(__dirname, "../../docs/vpncheap-issue-language-and-triage-convention.md")));
+  assert.match(config.project.readme, /无定时任务、自动翻译或 LLM 正确性路径/);
+});
+
+test("Issue forms use canonical Chinese titles and route missing information to Needs info", () => {
+  const formsDir = path.resolve(__dirname, "../../.github/ISSUE_TEMPLATE");
+  const forms = fs.readdirSync(formsDir).filter((name) => /^\d{2}-.*\.yml$/.test(name));
+  assert.equal(forms.length, 6);
+  for (const name of forms) {
+    const source = fs.readFileSync(path.join(formsDir, name), "utf8");
+    assert.match(source, /^title: "【待确认平台｜发布】"$/m, name);
+    assert.doesNotMatch(source, /invalid submission and will be closed|无效提交并关闭/, name);
+    assert.match(source, /Needs info/, name);
+    assert.match(source, /^labels: \["(?:bug|enhancement|question)", "type:release"\]$/m, name);
+    assert.match(source, /人工审核|human triage/, name);
+    assert.match(source, /标题、全部正文|title, all body fields/, name);
+  }
+});
+
+test("README and Issue chooser expose the Chinese triage convention", () => {
+  const readme = fs.readFileSync(path.resolve(__dirname, "../../README.md"), "utf8");
+  const chooser = fs.readFileSync(path.resolve(__dirname, "../../.github/ISSUE_TEMPLATE/config.yml"), "utf8");
+  assert.match(readme, /vpncheap-issue-language-and-triage-convention\.md/);
+  assert.match(chooser, /vpncheap-issue-language-and-triage-convention\.md/);
+});
+
+test("foundation CI parses Issue Form YAML before deterministic tests", () => {
+  const workflow = fs.readFileSync(path.resolve(__dirname, "../../.github/workflows/issue-hub-foundation-ci.yml"), "utf8");
+  assert.match(workflow, /require "yaml"/);
+  assert.match(workflow, /YAML\.load_file/);
+});
+
 test("foundation governs exactly the frozen twelve repositories", () => {
   assert.deepEqual(Object.keys(config.taxonomy.repositories), [
     "vpncheap",
@@ -44,6 +80,14 @@ test("taxonomy never creates Status or Priority labels", () => {
   const definitions = taxonomyLabelDefinitions(config);
   assert.equal(definitions.some((label) => /^(status|priority):/i.test(label.name)), false);
   assert(definitions.some((label) => label.name === "taxonomy-conflict"));
+  assert(definitions.some((label) => label.name === "platform:linux"));
+});
+
+test("multi-platform intake repositories do not guess platform or surface labels", () => {
+  for (const repository of ["vpncheap", "vpncheap-app", "vpncheap-apple-native", "vpncheap-maintained"]) {
+    const defaults = config.taxonomy.repositories[repository].defaults;
+    assert.equal(defaults.some((label) => /^(platform|surface):/.test(label)), false, repository);
+  }
 });
 
 test("forbidden label audit matches configured field values, not unrelated needs labels", () => {

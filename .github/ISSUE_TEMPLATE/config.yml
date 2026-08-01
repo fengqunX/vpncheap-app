@@ -1,1 +1,5 @@
 blank_issues_enabled: false
+contact_links:
+  - name: VPNCheap Issue 中文与分诊规范
+    url: https://github.com/fengqunX/vpncheap-app/blob/main/docs/vpncheap-issue-language-and-triage-convention.md
+    about: 提交前了解标题、证据、隐私和 Needs info 规则。

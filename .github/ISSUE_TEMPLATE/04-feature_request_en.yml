@@ -1,12 +1,12 @@
 name: Feature request (English)
 description: Request a specific, actionable VPNCheap release/download feature.
-title: "[Feature] "
-labels: ["enhancement"]
+title: "【待确认平台｜发布】"
+labels: ["enhancement", "type:release"]
 body:
   - type: markdown
     attributes:
       value: |
-        **Describe the concrete release, download, install, or update scenario you want solved. Vague requests will be closed.**
+        **Describe the concrete release, download, install, or update scenario you want solved. Missing information stays open and human triage marks it Needs info.**
 
         Do not only write "configure that server", "add disaster recovery", or "add that feature". Tell us the release channel, request type, current problem, and the exact behavior you want changed or added. Screenshots, recordings, or examples make the request much easier to evaluate.
 
@@ -16,7 +16,7 @@ body:
       label: Release channel / package
       description: Which release channel does this mainly affect? **Please pick manually — do not leave the placeholder selected.**
       options:
-        - "⚠️ Please select a release channel (leaving this counts as an invalid submission and will be closed)"
+        - "⚠️ Please select a release channel (otherwise human triage marks the open issue Needs info)"
         - iOS — App Store (Native build)
         - iOS — TestFlight (Native build)
         - iOS — TestFlight (Flutter build)
@@ -35,7 +35,7 @@ body:
       label: Request type
       description: What kind of change are you asking for? **Please pick manually — do not leave the placeholder selected.**
       options:
-        - "⚠️ Please select a request type (leaving this counts as an invalid submission and will be closed)"
+        - "⚠️ Please select a request type (otherwise human triage marks the open issue Needs info)"
         - Add a package or release channel
         - Improve download or install instructions
         - Improve the update flow
@@ -71,7 +71,7 @@ body:
       label: Impact
       description: How does this affect users? **Please pick manually — do not leave the placeholder selected.**
       options:
-        - "⚠️ Please select an impact level (leaving this counts as an invalid submission and will be closed)"
+        - "⚠️ Please select an impact level (otherwise human triage marks the open issue Needs info)"
         - Convenience improvement
         - Affects download or install for some users
         - Affects many users on one platform
@@ -85,7 +85,7 @@ body:
     id: evidence
     attributes:
       label: Screenshots, recordings, examples, or extra context (optional)
-      description: If this involves the Release page, download links, install prompts, or update flow, please attach screenshots or a short recording.
+      description: If this involves the Release page, download links, install prompts, or update flow, please attach screenshots or a short recording. Redact credentials, customer data, server addresses, IPs, ports, and protocol names first.
       placeholder: "Add screenshots, recordings, download links, version numbers, related issues, or other context here."
     validations:
       required: false
@@ -102,5 +102,7 @@ body:
           required: true
         - label: "I explained the current problem or user scenario and the specific behavior I want changed or added."
           required: true
-        - label: "I understand that vague requests like 'configure that server', 'add disaster recovery', or 'add it' will be closed."
+        - label: "I understand that vague requests like 'configure that server', 'add disaster recovery', or 'add it' will be marked Needs info."
+          required: true
+        - label: "I removed credentials, customer data, server addresses, IPs, ports, and protocol names from the title, all body fields, and attachments."
           required: true

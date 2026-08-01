@@ -1,14 +1,14 @@
 name: 咨询（中文）
 description: 询问 VPNCheap 发布、下载、安装或更新流程如何工作，以及为什么某些做法不可行。
-title: "[Inquiry] "
-labels: ["question"]
+title: "【待确认平台｜发布】"
+labels: ["question", "type:release"]
 body:
   - type: markdown
     attributes:
       value: |
         **这个表单用于咨询和澄清，不用于提交 bug 或新功能。**
 
-        例如：可以询问「为什么某个崩溃场景不能让用户手动发送日志？」或「为什么某个平台的安装包这样发布？」这类工作原理问题。请先说明发布渠道、场景和你已经看过的信息。没有上下文的重复问题可能会被关闭或转到已有 issue。
+        例如：可以询问「为什么某个崩溃场景不能让用户手动发送日志？」或「为什么某个平台的安装包这样发布？」这类工作原理问题。请先说明发布渠道、场景和你已经看过的信息。没有上下文时由人工审核标记为 Needs info；重复问题会链接唯一 Issue 后关闭。
 
   - type: dropdown
     id: release_area
@@ -16,7 +16,7 @@ body:
       label: 发布渠道 / 安装包
       description: 这个问题主要和哪个发布渠道有关？**请手动选择，不要保留默认占位符。**
       options:
-        - "⚠️ 请选择发布渠道（保留此项会被视为无效提交并关闭）"
+        - "⚠️ 请选择发布渠道（保留此项时，人工审核会标记为 Needs info）"
         - iOS — App Store（原生版 Native）
         - iOS — TestFlight（原生版 Native）
         - iOS — TestFlight（Flutter 版）
@@ -35,7 +35,7 @@ body:
       label: 咨询主题
       description: 你想了解哪一类问题？**请手动选择，不要保留默认占位符。**
       options:
-        - "⚠️ 请选择咨询主题（保留此项会被视为无效提交并关闭）"
+        - "⚠️ 请选择咨询主题（保留此项时，人工审核会标记为 Needs info）"
         - 日志 / 崩溃 / 诊断
         - 下载 / 安装 / 更新流程
         - 版本说明 / changelog
@@ -70,7 +70,7 @@ body:
     id: evidence
     attributes:
       label: 截图、链接或补充信息（可选）
-      description: 如果问题和 Release 页面、下载链接、安装提示、更新流程或已有 issue 有关，请贴上链接或截图。
+      description: 如果问题和 Release 页面、下载链接、安装提示、更新流程或已有 issue 有关，请贴上链接或截图。上传前必须遮盖凭据、客户隐私、服务器地址、IP、端口和协议名称。
       placeholder: "可以放截图、录屏、下载链接、版本号、相关 issue 或文档链接。"
     validations:
       required: false
@@ -88,4 +88,6 @@ body:
         - label: "我已说明发布渠道、咨询主题、具体问题和背景。"
           required: true
         - label: "我确认这不是 bug 反馈或功能请求；如果是，我会使用对应表单。"
+          required: true
+        - label: "我已从标题、全部正文和附件中删除凭据、客户隐私、服务器地址、IP、端口和协议名称。"
           required: true
