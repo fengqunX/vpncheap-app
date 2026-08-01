@@ -9,6 +9,6 @@ permissions:
 
 jobs:
   sync:
-    uses: fengqunX/vpncheap-app/.github/workflows/issue-hub-sync-reusable.yml@9da599f4dfa08eac364c68ae80840ddc3c997f49
+    uses: fengqunX/vpncheap-app/.github/workflows/issue-hub-sync-reusable.yml@b14497cb78952882c59a8a050d46d8476857e867
     secrets:
       project_token: ${{ secrets.VPNCHEAP_PROJECT_TOKEN }}
