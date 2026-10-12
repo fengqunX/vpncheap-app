@@ -1,0 +1,19 @@
+# secrets, signing material, local AI files and internal docs: never commit
+.env
+.env.*
+key.properties
+key.properties.*
+*.p8
+*.p12
+*.pfx
+*.jks
+*.keystore
+.keystore/
+*.mobileprovision
+*.bak
+*.bak-*
+!.env.example
+!.env.sample
+CLAUDE.md
+docs/
+.DS_Store
